@@ -81,7 +81,7 @@ RazerHydra::~RazerHydra()
 {
   if (hidraw_fd >= 0)
   {
-    ROS_INFO("releasing hydra");
+    ROS_DEBUG("releasing hydra");
     uint8_t buf[256];
     memset(buf, 0, sizeof(buf));
     buf[6] = 1;
@@ -94,7 +94,7 @@ RazerHydra::~RazerHydra()
       perror("HIDIOCSFEATURE");
     }
     else
-      ROS_INFO("stopped streaming");
+      ROS_DEBUG("stopped streaming");
     close(hidraw_fd);
   }
 }
@@ -167,7 +167,7 @@ bool RazerHydra::init(const char *device)
         }
         else
         {
-            ROS_INFO("Device stream is working.");
+            ROS_DEBUG("Device stream is working.");
             break;
         }
     }
@@ -199,7 +199,7 @@ bool RazerHydra::poll(uint32_t ms_to_wait, float low_pass_corner_hz)
   while (ros::WallTime::now() < t_deadline)
   {
     ssize_t nread = read(hidraw_fd, buf, sizeof(buf));
-    //ROS_INFO("read %d bytes", (int)nread);
+    ROS_DEBUG("read %d bytes", (int)nread);
     if (nread > 0)
     {
       static bool first_time = true;
@@ -207,13 +207,13 @@ bool RazerHydra::poll(uint32_t ms_to_wait, float low_pass_corner_hz)
       if(!first_time) {
         float last_period = (ros::WallTime::now() - last_cycle_start).toSec();
         period_estimate.process(last_period);
-        //ROS_INFO("last_cycle: %.4f sec, average: %.4f sec", last_period, period_estimate);
+        ROS_DEBUG("last_cycle: %.4f sec", last_period);
       }
       last_cycle_start = ros::WallTime::now();
       if(first_time)
       {
         first_time = false;
-        ROS_INFO("Got first data, everything should be working now!");
+        ROS_DEBUG("Got first data, everything should be working now!");
       }
 
       // Update filter frequencies
@@ -304,17 +304,17 @@ bool RazerHydra::poll(uint32_t ms_to_wait, float low_pass_corner_hz)
       float sleep_duration = (to_sleep - ros::WallTime::now()).toSec();
       if(sleep_duration > 0)
       {
-        //ROS_INFO("Data not ready, sleeping for %.6f sec", sleep_duration);
+        ROS_DEBUG("Data not ready, sleeping for %.6f sec.  to_sleep %f, last_cycle_start = %f ", sleep_duration, to_sleep.toSec(), last_cycle_start.toSec());
         ros::WallTime::sleepUntil(to_sleep);
       }
       else {
-        //ROS_INFO("Data not ready, doing default sleep of 500 us");
+        ROS_DEBUG("Data not ready, doing default sleep of 500 us");
         usleep(250);
       }
 
     }
   }
-  //ROS_INFO("Ran out of time, returning!");
+  ROS_DEBUG("Ran out of time, returning!");
   return false;
 }
 
