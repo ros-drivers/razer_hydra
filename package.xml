@@ -4,7 +4,7 @@
   <description>Unofficial driver and ROS node for Razer Hydra</description>
   <maintainer email="adamleeper@gmail.com">Adam Leeper</maintainer>
 
-  <license></license>
+  <license>Public Domain</license>
 
   <url type="website">http://www.ros.org/wiki/razer_hydra</url>
   <url type="bugtracker">https://github.com/aleeper/razer_hydra/issues</url>
