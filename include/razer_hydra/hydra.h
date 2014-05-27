@@ -71,7 +71,7 @@ public:
   uint8_t buttons[14];
 
   OnePole<float> period_estimate;
-  ros::Time last_cycle_start;
+  ros::WallTime last_cycle_start;
 
 };
 
