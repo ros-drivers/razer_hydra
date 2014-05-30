@@ -2,6 +2,23 @@
 Changelog for package razer_hydra
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* fix CMake formatting
+* change ROS_INFO to ROS_DEBUG
+  Conflicts:
+  src/hydra.cpp
+* Merge commit 'fbced1dda9972f3c54ccee8c61dae6993285ed8b' into hydro-devel
+* fix license tag in package.xml
+* switching driver time to use WallTime to enable using the driver with sim time.
+* apply catkin_lint
+* Use "Public Domain" license for razer_hydra
+  Source files in the project state that the code is Public Domain
+* 0.0.12
+* fixed install target
+* udev filename -> hydro
+* Contributors: Adam Leeper, David Gossow, Kel Guerin, Scott K Logan, Tully Foote
+
 0.0.5 (2013-07-04)
 ------------------
 * actually updated the changelog
