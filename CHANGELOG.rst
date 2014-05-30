@@ -2,8 +2,8 @@
 Changelog for package razer_hydra
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.1 (2014-05-29)
+------------------
 * setting hydro-devel to 0.1.x tags
 * update changelog
 * fix CMake formatting
