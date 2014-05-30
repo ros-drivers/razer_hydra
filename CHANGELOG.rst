@@ -2,8 +2,8 @@
 Changelog for package razer_hydra
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.21 (2014-05-29)
+-------------------
 * setting groovy-devel tags to increment from 0.0.20
 * change ROS_INFO to ROS_DEBUG
   Conflicts:
