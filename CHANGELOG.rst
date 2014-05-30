@@ -2,6 +2,25 @@
 Changelog for package razer_hydra
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* setting indigo-devel to 0.2.x tags
+* Merge branch 'hydro-devel' into indigo-devel
+* fix CMake formatting
+* Merge branch 'hydro-devel' into indigo-devel
+* change ROS_INFO to ROS_DEBUG
+  Conflicts:
+  src/hydra.cpp
+* Merge commit 'fbced1dda9972f3c54ccee8c61dae6993285ed8b' into hydro-devel
+* Merge pull request #6 from jhu-lcsr-forks/walltime-fix
+  switching driver time to use WallTime to enable using the driver with sim time.
+* Merge branch 'cottsay-hydro-devel' into indigo-devel
+* fix license tag in package.xml
+* switching driver time to use WallTime to enable using the driver with sim time.
+* Use "Public Domain" license for razer_hydra
+  Source files in the project state that the code is Public Domain
+* Contributors: Adam Leeper, Kel Guerin, Scott K Logan, Tully Foote
+
 0.0.5 (2013-07-04)
 ------------------
 * actually updated the changelog
