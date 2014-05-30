@@ -2,8 +2,8 @@
 Changelog for package razer_hydra
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.1 (2014-05-29)
+------------------
 * setting indigo-devel to 0.2.x tags
 * Merge branch 'hydro-devel' into indigo-devel
 * fix CMake formatting
