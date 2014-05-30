@@ -4,6 +4,8 @@ Changelog for package razer_hydra
 
 Forthcoming
 -----------
+* setting hydro-devel to 0.1.x tags
+* update changelog
 * fix CMake formatting
 * change ROS_INFO to ROS_DEBUG
   Conflicts:
