@@ -66,7 +66,7 @@ RazerHydra::RazerHydra()
   : hidraw_fd(0)
 {
   ros::Time::init();
-  last_cycle_start = ros::Time::now();
+  last_cycle_start = ros::WallTime::now();
   period_estimate.setFc(0.11, 1.0); // magic number for 50% mix at each step
   period_estimate.setValue(0.004);
 
@@ -192,11 +192,11 @@ bool RazerHydra::poll(uint32_t ms_to_wait, float low_pass_corner_hz)
     ROS_ERROR("Corner frequency for low-pass filter must be greater than 0. Aborting.");
     return false;
   }
-  ros::Time t_start(ros::Time::now());
-  ros::Time t_deadline(t_start + ros::Duration(0.001 * ms_to_wait));
+  ros::WallTime t_start(ros::WallTime::now());
+  ros::WallTime t_deadline(t_start + ros::WallDuration(0.001 * ms_to_wait));
 
   uint8_t buf[64];
-  while (ros::Time::now() < t_deadline)
+  while (ros::WallTime::now() < t_deadline)
   {
     ssize_t nread = read(hidraw_fd, buf, sizeof(buf));
     //ROS_INFO("read %d bytes", (int)nread);
@@ -205,11 +205,11 @@ bool RazerHydra::poll(uint32_t ms_to_wait, float low_pass_corner_hz)
       static bool first_time = true;
       // Update average read period
       if(!first_time) {
-        float last_period = (ros::Time::now() - last_cycle_start).toSec();
+        float last_period = (ros::WallTime::now() - last_cycle_start).toSec();
         period_estimate.process(last_period);
         //ROS_INFO("last_cycle: %.4f sec, average: %.4f sec", last_period, period_estimate);
       }
-      last_cycle_start = ros::Time::now();
+      last_cycle_start = ros::WallTime::now();
       if(first_time)
       {
         first_time = false;
@@ -300,12 +300,12 @@ bool RazerHydra::poll(uint32_t ms_to_wait, float low_pass_corner_hz)
     }
     else
     {
-      ros::Time to_sleep = last_cycle_start + ros::Duration(period_estimate.getValue()*0.95);
-      float sleep_duration = (to_sleep - ros::Time::now()).toSec();
+      ros::WallTime to_sleep = last_cycle_start + ros::WallDuration(period_estimate.getValue()*0.95);
+      float sleep_duration = (to_sleep - ros::WallTime::now()).toSec();
       if(sleep_duration > 0)
       {
         //ROS_INFO("Data not ready, sleeping for %.6f sec", sleep_duration);
-        ros::Time::sleepUntil(to_sleep);
+        ros::WallTime::sleepUntil(to_sleep);
       }
       else {
         //ROS_INFO("Data not ready, doing default sleep of 500 us");
