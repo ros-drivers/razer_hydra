@@ -2,6 +2,19 @@
 Changelog for package razer_hydra
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* setting groovy-devel tags to increment from 0.0.20
+* change ROS_INFO to ROS_DEBUG
+  Conflicts:
+  src/hydra.cpp
+* switching driver time to use WallTime to enable using the driver with sim time.
+* prefix targets during build to not collide
+* Merge pull request #5 from cottsay/groovy-devel
+  Use "Public Domain" license for razer_hydra
+* Use "Public Domain" license for razer_hydra
+* Contributors: Adam Leeper, Kel Guerin, Scott K Logan, Tully Foote
+
 0.0.5 (2013-07-04)
 ------------------
 * actually updated the changelog
